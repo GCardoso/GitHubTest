@@ -1,6 +1,9 @@
 package com.guilhermecardoso.githubtest.app.modules.searchuser;
 
 import com.guilhermecardoso.githubtest.BaseActions;
+import com.guilhermecardoso.githubtest.domain.network.entity.Repo;
+
+import java.util.List;
 
 /**
  * Created by guilhermecardoso on 11/27/17.
@@ -9,7 +12,7 @@ import com.guilhermecardoso.githubtest.BaseActions;
 public interface SearchUserContract {
 
     interface View {
-        void navigateToUserRepos();
+        void navigateToUserRepos(List<Repo> repos);
         void searchUser();
         void showUserNotFoundError();
         void showNetworkError();

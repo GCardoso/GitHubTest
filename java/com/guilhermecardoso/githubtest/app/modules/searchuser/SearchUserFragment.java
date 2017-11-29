@@ -1,5 +1,6 @@
 package com.guilhermecardoso.githubtest.app.modules.searchuser;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,9 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.guilhermecardoso.githubtest.R;
+import com.guilhermecardoso.githubtest.app.modules.userrepos.UserReposActivity;
+import com.guilhermecardoso.githubtest.domain.network.entity.Repo;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,7 +31,7 @@ public class SearchUserFragment extends Fragment implements SearchUserContract.V
 
     private SearchUserContract.Actions presenter;
     private SweetAlertDialog dialog;
-    private static String TAG = "BuscaCidadeFragment";
+    private static String TAG = "SearchUserFragment";
 
     @BindView(R.id.edit_username)
     EditText editUsername;
@@ -52,9 +57,16 @@ public class SearchUserFragment extends Fragment implements SearchUserContract.V
         presenter.subscribe();
     }
 
+
+
     @Override
-    public void navigateToUserRepos() {
-        Toast.makeText(getActivity(), "YupYup", Toast.LENGTH_SHORT).show();
+    public void navigateToUserRepos(List<Repo> repos) {
+        Intent intent = new Intent(getActivity(), UserReposActivity.class);
+
+        intent.putParcelableArrayListExtra(UserReposActivity.EXTRA_REPOS_LIST, new ArrayList<Repo>(repos));
+        intent.putExtra(UserReposActivity.EXTRA_USERNAME, editUsername.getText().toString().toLowerCase());
+
+        startActivity(intent);
     }
 
     @OnClick(R.id.button_search_user)

@@ -1,6 +1,7 @@
 package com.guilhermecardoso.githubtest.domain.network.services;
 
 import com.guilhermecardoso.githubtest.domain.network.entity.Repo;
+import com.guilhermecardoso.githubtest.domain.network.entity.User;
 
 import java.util.List;
 
@@ -18,4 +19,6 @@ public interface GitHubService {
 
     @GET("{username}/repos")
     Single<List<Repo>> getUserRepos(@Path("username") String username);
+    @GET("{username}")
+    Single<User> getUser(@Path("username") String username);
 }

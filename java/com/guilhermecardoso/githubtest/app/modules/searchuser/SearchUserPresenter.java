@@ -40,7 +40,7 @@ class SearchUserPresenter implements SearchUserContract.Actions {
 
                 if (repos != null) {
                     if (repos.size() > 0) {
-                        view.navigateToUserRepos();
+                        view.navigateToUserRepos(repos);
                     } else {
                         view.showUserNotFoundError();
                     }
